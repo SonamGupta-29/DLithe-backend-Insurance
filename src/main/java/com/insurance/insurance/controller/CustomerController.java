@@ -4,14 +4,18 @@ import com.insurance.insurance.dto.BaseResponse;
 import com.insurance.insurance.dto.CustomerRequest;
 import com.insurance.insurance.dto.LoginRequest;
 import com.insurance.insurance.service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Slf4j
+@CrossOrigin(origins = "*")
 public class CustomerController {
 
     @Autowired
@@ -30,7 +34,7 @@ public class CustomerController {
         return customerService.customerRegistration(customerRequest);
     }
 
-    @PostMapping("Login")
+    @PostMapping("login")
     public ResponseEntity<BaseResponse> customerLogin(@RequestBody LoginRequest loginRequest)
     {
         if(loginRequest==null) {
