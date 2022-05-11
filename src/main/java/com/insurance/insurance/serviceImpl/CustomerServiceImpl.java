@@ -34,7 +34,9 @@ public class CustomerServiceImpl implements CustomerService {
         baseResponse.setMessage("Successfully added");
         baseResponse.setHttpStatus(HttpStatus.OK);
         baseResponse.setHttpStatusCode(HttpStatus.OK.value());
+//        baseResponse.setResponse(cust);
         return new ResponseEntity<BaseResponse>(baseResponse, HttpStatus.OK);
+
     }
 
     @Override
@@ -43,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
         Optional<Customer> customer = Optional.ofNullable(customerDAO.login(loginRequest.getEmail(), loginRequest.getPassword()));
         BaseResponse baseResponse = new BaseResponse();
         if (!customer.isPresent()) {
-            baseResponse.setMessage("User Not Found");
+            baseResponse.setMessage("Invalid Username and Password");
             baseResponse.setHttpStatus(HttpStatus.NOT_FOUND);
             baseResponse.setHttpStatusCode(HttpStatus.NOT_FOUND.value());
             return new ResponseEntity<BaseResponse>(baseResponse, HttpStatus.NOT_FOUND);
