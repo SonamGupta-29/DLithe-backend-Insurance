@@ -25,7 +25,7 @@ public class CustomerController {
     public ResponseEntity<BaseResponse> customerRegistration(@RequestBody CustomerRequest customerRequest) {
         if (customerRequest == null) {
             BaseResponse baseResponse = new BaseResponse();
-            baseResponse.setMessage("Credentials Should not be null");
+            baseResponse.setMessage("Fields Should not be Empty");
             baseResponse.setHttpStatus(HttpStatus.BAD_REQUEST);
             baseResponse.setHttpStatusCode(HttpStatus.BAD_REQUEST.value());
 
