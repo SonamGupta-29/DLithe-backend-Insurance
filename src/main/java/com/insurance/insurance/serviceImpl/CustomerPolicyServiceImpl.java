@@ -38,13 +38,13 @@ public class CustomerPolicyServiceImpl implements CustomerPolicyService {
     }
 
     @Override
-    public ResponseEntity<BaseResponse> fetchCustomerPolicyInformation(int cId) {
-        List<CustomerPolicyDetail> policesListFromDb = (List<CustomerPolicyDetail>) customerPolicyDAO.fetchPoliciesById(cId);
+    public ResponseEntity<BaseResponse> fetchCustomerPolicyInformation(int customerId) {
+        List<CustomerPolicyDetail> policesListFromDb = (List<CustomerPolicyDetail>) customerPolicyDAO.fetchPoliciesById(customerId);
         List<CustomerPolicyRequest> policiesList = new ArrayList<>();
         BaseResponse baseResponse = new BaseResponse();
         CustomerPolicyResponseDTO finalResponse = new CustomerPolicyResponseDTO();
-        if (policesListFromDb == null) {
-            baseResponse.setMessage("User Not Found");
+        if (policesListFromDb.isEmpty()) {
+            baseResponse.setMessage("Soryyy!!! You have not bought any Policies");
             baseResponse.setHttpStatus(HttpStatus.NOT_FOUND);
             baseResponse.setHttpStatusCode(HttpStatus.NOT_FOUND.value());
             return new ResponseEntity<BaseResponse>(baseResponse, HttpStatus.NOT_FOUND);
@@ -52,8 +52,8 @@ public class CustomerPolicyServiceImpl implements CustomerPolicyService {
 
         for (CustomerPolicyDetail customerPolicyDetail : policesListFromDb) {
             CustomerPolicyRequest policiesObject = new CustomerPolicyRequest();
-//            policiesObject.set("The Policy Name: "+policiesDetails.getName());
-//            policiesObject.setAmountCover(policiesDetails.getAmountCover());
+//policiesObject.set("The Policy Name: "+policiesDetails.getName());
+//policiesObject.setAmountCover(policiesDetails.getAmountCover());
 //            policiesObject.setPremiumAmount(policiesDetails.getPremiumAmount());
 //            policiesObject.setAccommodation(policiesDetails.getAccommodation());
 //            policiesObject.setHealthCheckup(policiesDetails.getHealthCheckup());
@@ -64,7 +64,7 @@ public class CustomerPolicyServiceImpl implements CustomerPolicyService {
 
             policiesObject.setPoliciesId(customerPolicyDetail.getPoliciesId());
             policiesObject.setCustomerId(customerPolicyDetail.getCustomerId());
-//            policiesObject.setActive(customerPolicyDetail.g);
+               policiesObject.setActive(customerPolicyDetail.isActive());
             policiesList.add(policiesObject);
         }
         baseResponse.setMessage("These are the Given Policies");

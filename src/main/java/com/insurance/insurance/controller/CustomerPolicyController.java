@@ -22,7 +22,7 @@ public class CustomerPolicyController {
     {
         if(customerPolicyRequest==null) {
             BaseResponse baseResponse = new BaseResponse();
-            baseResponse.setMessage("fields Should not be null");
+            baseResponse.setMessage("Fields should not be null");
             baseResponse.setHttpStatus(HttpStatus.BAD_REQUEST);
             baseResponse.setHttpStatusCode(HttpStatus.BAD_REQUEST.value());
             return new ResponseEntity<BaseResponse>(baseResponse, HttpStatus.BAD_REQUEST);
@@ -30,17 +30,17 @@ public class CustomerPolicyController {
         return customerPolicyService.insertCustomerPolicies(customerPolicyRequest);
     }
 
-    @GetMapping("fetch-customer-policy/{cId}")
-    public ResponseEntity<BaseResponse> displayCustomerPolicy(@PathVariable int cId)
+    @GetMapping("fetch-customer-policy/{customerId}")
+    public ResponseEntity<BaseResponse> displayCustomerPolicy(@PathVariable int customerId)
     {
-        if(cId==0) {
+        if(customerId==0) {
             BaseResponse baseResponse = new BaseResponse();
             baseResponse.setMessage("fields Should not be null");
             baseResponse.setHttpStatus(HttpStatus.BAD_REQUEST);
             baseResponse.setHttpStatusCode(HttpStatus.BAD_REQUEST.value());
             return new ResponseEntity<BaseResponse>(baseResponse, HttpStatus.BAD_REQUEST);
         }
-        return customerPolicyService.fetchCustomerPolicyInformation(cId);
+        return customerPolicyService.fetchCustomerPolicyInformation(customerId);
     }
 
     @PostMapping("buy-policies")

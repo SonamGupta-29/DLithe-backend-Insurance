@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
         cust.setPassword(customerRequest.getPassword());
         cust.setConfirmPassword(customerRequest.getConfirmPassword());
         customerDAO.save(cust);
-        baseResponse.setMessage("Successfully added");
+        baseResponse.setMessage(" Customer Sucessfully  Registred");
         baseResponse.setHttpStatus(HttpStatus.OK);
         baseResponse.setHttpStatusCode(HttpStatus.OK.value());
 //        baseResponse.setResponse(cust);

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public interface CustomerPolicyService {
     ResponseEntity<BaseResponse> insertCustomerPolicies(CustomerPolicyRequest customerPolicyRequest);
 
-    ResponseEntity<BaseResponse> fetchCustomerPolicyInformation(int cId);
+    ResponseEntity<BaseResponse> fetchCustomerPolicyInformation(int customerId);
 
     ResponseEntity<BaseResponse> customerBuyPolicies(CustomerPolicyRequest customerPolicyRequest);
 }

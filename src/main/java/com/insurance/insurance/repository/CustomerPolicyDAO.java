@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface CustomerPolicyDAO extends JpaRepository<CustomerPolicyDetail,Integer> {
-    @Query(value ="select * from customer_policies where customer_id=?1",nativeQuery = true)
+    @Query(value ="select * from customer_policies where customer_id=?1 and is_active='1'",nativeQuery = true)
     List<CustomerPolicyDetail> fetchPoliciesById(int cId);
 
 }
